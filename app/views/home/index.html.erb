@@ -4,11 +4,9 @@
   <% end %>
 
   <!-- Chat messages area -->
-  <div class="flex-1 overflow-y-auto p-4 space-y-4" id="message_history" 
-       data-controller="autoscroll" 
-       data-action="turbo:after-render@document->autoscroll#messageAdded">
-    <% if @chat_record && @chat_record.messages.any? %>
-    <%= render @chat_record.messages %>
+  <div class="flex-1 overflow-y-auto p-4 space-y-4" id="message_history" data-controller="autoscroll" data-action="turbo:after-render@document->autoscroll#messageAdded">
+    <% if @messages.any? %>
+    <%= render @messages %>
     <% else %>
     <div class="text-center text-gray-500">No messages yet. Start the conversation!</div>
     <% end %>
