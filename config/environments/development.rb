@@ -56,7 +56,7 @@ Rails.application.configure do
   config.active_job.verbose_enqueue_logs = true
   
   # Use Solid Queue for Active Job
-  config.active_job.queue_adapter = :solid_queue
+  config.active_job.queue_adapter = :async
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
