@@ -1,17 +1,21 @@
-<div class="max-w-2xl mx-auto my-8">
-  <div class="bg-base-200 p-4 rounded-box">
-    <% if @chat_record %>
-    <%= turbo_stream_from "chat_#{@chat_record.id}" %>
+<div class="h-full flex flex-col">
+  <% if @chat_record %>
+  <%= turbo_stream_from "chat_#{@chat_record.id}" %>
+  <% end %>
+
+  <!-- Chat messages area -->
+  <div class="flex-1 overflow-y-auto p-4 space-y-4" id="message_history" 
+       data-controller="autoscroll" 
+       data-action="turbo:after-render@document->autoscroll#messageAdded">
+    <% if @chat_record && @chat_record.messages.any? %>
+    <%= render @chat_record.messages %>
+    <% else %>
+    <div class="text-center text-gray-500">No messages yet. Start the conversation!</div>
     <% end %>
+  </div>
 
-    <div class="h-full overflow-y-auto mb-4 space-y-4" id="message_history">
-      <% if @chat_record && @chat_record.messages.any? %>
-      <%= render @chat_record.messages %>
-      <% else %>
-      <div class="text-center text-gray-500">No messages yet. Start the conversation!</div>
-      <% end %>
-    </div>
-
+  <!-- Fixed form at bottom -->
+  <div class="border-t bg-base-100 p-4 flex-shrink-0">
     <%= render "chat_records/form", chat_record: @chat_record %>
   </div>
 </div>
