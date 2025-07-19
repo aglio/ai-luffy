@@ -6,6 +6,9 @@ class ChatStreamJob < ApplicationJob
     assistant_message = Message.find(assistant_message_id)
     full_content = ""
 
+    # Wait a bit to ensure WebSocket connection is established
+    sleep 0.1
+    
     # Stream the response from rubyllm
     chat.chat_client.ask(message_text) do |chunk|
       # Skip if chunk.content is nil or empty
@@ -20,6 +23,9 @@ class ChatStreamJob < ApplicationJob
         partial: "messages/message",
         locals: { message: assistant_message.tap { |m| m.content = full_content } }
       )
+      
+      # Small delay to ensure updates are processed
+      sleep 0.01
     end
     
     # Save the final content

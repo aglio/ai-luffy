@@ -1,18 +1,17 @@
 <div class="max-w-2xl mx-auto my-8">
   <div class="bg-base-200 p-4 rounded-box">
     <% if @chat_record %>
-      <%= turbo_stream_from "chat_#{@chat_record.id}" %>
+    <%= turbo_stream_from "chat_#{@chat_record.id}" %>
     <% end %>
-    
-    <div class="h-96 overflow-y-auto mb-4 space-y-4" id="message_history">
+
+    <div class="h-full overflow-y-auto mb-4 space-y-4" id="message_history">
       <% if @chat_record && @chat_record.messages.any? %>
-        <%= render @chat_record.messages %>
+      <%= render @chat_record.messages %>
       <% else %>
-        <div class="text-center text-gray-500">No messages yet. Start the conversation!</div>
+      <div class="text-center text-gray-500">No messages yet. Start the conversation!</div>
       <% end %>
     </div>
 
     <%= render "chat_records/form", chat_record: @chat_record %>
   </div>
 </div>
-
