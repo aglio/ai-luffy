@@ -10,11 +10,7 @@
       </div>
     <% end %>
 
-    <%= form_with url: chat_records_path, method: :post, class: "flex", id: "message_form" do |form| %>
-      <%= form.hidden_field :chat_record_id, value: @chat_record.id %>
-      <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message..." %>
-      <%= form.button "Send", class: "btn btn-primary ml-2" %>
-    <% end %>
+    <%= render "chat_records/form", chat_record: @chat_record %>
   </div>
 </div>
 

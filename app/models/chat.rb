@@ -4,9 +4,11 @@ class Chat < ApplicationRecord
   belongs_to :user, optional: true
   validates :model_id, presence: true
 
-  after_initialize :set_chat
+  after_initialize :set_chat_client
 
-  def set_chat
-    @chat = RubyLLM.chat(model: model_id, provider: "openai")
+  attr_reader :chat_client
+
+  def set_chat_client
+    @chat_client = RubyLLM.chat(model: model_id, provider: "openai")
   end
 end
