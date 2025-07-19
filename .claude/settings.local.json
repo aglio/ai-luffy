@@ -5,7 +5,8 @@
       "Bash(rails:*)",
       "Bash(ls:*)",
       "WebFetch(domain:rubyllm.com)",
-      "Bash(bundle exec rails:*)"
+      "Bash(bundle exec rails:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

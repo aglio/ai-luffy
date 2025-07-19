@@ -1,5 +1,5 @@
 <%= form_with url: chat_records_path, method: :post, class: "flex", id: "message_form" do |form| %>
-  <%= form.hidden_field :chat_record_id, value: @chat_record.id %>
-  <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
-  <%= form.button "Send", class: "btn btn-primary ml-2" %>
+<%= form.hidden_field :chat_record_id, value: @chat_record.id %>
+<%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
+<%= form.button "Send", class: "btn btn-primary ml-2" %>
 <% end %>

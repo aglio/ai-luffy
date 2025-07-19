@@ -6,8 +6,8 @@ class ChatStreamJob < ApplicationJob
     assistant_message = Message.find(assistant_message_id)
     full_content = ""
 
-    # Wait a bit to ensure WebSocket connection is established
-    sleep 0.1
+    # Wait to ensure WebSocket connection is established
+    sleep 0.5
     
     # Stream the response from rubyllm
     chat.chat_client.ask(message_text) do |chunk|
