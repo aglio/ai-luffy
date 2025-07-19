@@ -26,7 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_181700) do
     t.string "model_id"
     t.integer "input_tokens"
     t.integer "output_tokens"
-    t.integer "tool_call_id", null: false
+    t.integer "tool_call_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
