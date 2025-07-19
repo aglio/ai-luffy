@@ -1,0 +1,3 @@
+<div class="chat <%= message.role == 'user' ? 'chat-end' : 'chat-start' %>" id="<%= dom_id(message) %>">
+  <div class="chat-bubble"><%= message.content %></div>
+</div>

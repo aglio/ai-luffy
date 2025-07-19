@@ -1,0 +1,11 @@
+<%= turbo_stream.append "message_history" do %>
+  <%= render @chat_record.messages.last(2) %>
+<% end %>
+
+<%= turbo_stream.update "message_form" do %>
+  <%= form_with url: chat_records_path, method: :post, class: "flex" do |form| %>
+    <%= form.hidden_field :chat_record_id, value: @chat_record.id %>
+    <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
+    <%= form.button "Send", class: "btn btn-primary ml-2" %>
+  <% end %>
+<% end %>
