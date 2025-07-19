@@ -1,5 +1,15 @@
 <%= form_with url: chat_records_path, method: :post, class: "flex", id: "message_form" do |form| %>
-<%= form.hidden_field :chat_record_id, value: @chat_record.id %>
-<%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
-<%= form.button "Send", class: "btn btn-primary ml-2" %>
+  <%= form.hidden_field :chat_record_id, value: @chat_record.id %>
+  <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
+  <%= form.button "Send", class: "btn btn-primary ml-2", onclick: "this.disabled=true; this.textContent='Sending...'; this.form.submit();" %>
 <% end %>
+
+<script>
+document.addEventListener('turbo:submit-end', function() {
+  const button = document.querySelector('#message_form button[type="submit"]');
+  if (button) {
+    button.disabled = false;
+    button.textContent = 'Send';
+  }
+});
+</script>
