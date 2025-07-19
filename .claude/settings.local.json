@@ -3,7 +3,9 @@
     "allow": [
       "Bash(rails generate:*)",
       "Bash(rails:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:rubyllm.com)",
+      "Bash(bundle exec rails:*)"
     ],
     "deny": []
   }
