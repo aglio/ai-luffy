@@ -1,3 +1,18 @@
 <div class="chat <%= message.role == 'user' ? 'chat-end' : 'chat-start' %>" id="<%= dom_id(message) %>">
-  <div class="chat-bubble"><%= message.content %></div>
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <% if message.role == 'user' %>
+      <img alt="User avatar" src="https://icons.iconarchive.com/icons/crountch/one-piece-jolly-roger/256/Luffys-flag-icon.png" />
+      <% else %>
+      <img alt="Assistant avatar" src="https://icons.iconarchive.com/icons/crountch/one-piece-character/256/Lufy-icon.png" />
+      <% end %>
+    </div>
+  </div>
+  <div id="<%= dom_id(message, :content) %>" class="chat-bubble <%= message.role == 'user' ? 'chat-bubble-neutral' : 'chat-bubble-primary' %>">
+    <% if message.content.blank? %>
+    <span class="loading loading-dots loading-xs"></span>
+    <% else %>
+    <%= simple_format(message.content) %>
+    <% end %>
+  </div>
 </div>

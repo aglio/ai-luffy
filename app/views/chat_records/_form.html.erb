@@ -1,5 +1,36 @@
 <%= form_with url: chat_records_path, method: :post, class: "flex", id: "message_form" do |form| %>
   <%= form.hidden_field :chat_record_id, value: @chat_record.id %>
-  <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true %>
-  <%= form.button "Send", class: "btn btn-primary ml-2" %>
+  <%= form.text_field :message, class: "input input-bordered w-full", placeholder: "Type your message...", autofocus: true, 
+      oninput: "toggleSendButton()" %>
+  <%= form.button "Send", class: "btn btn-primary ml-2", disabled: true,
+      onclick: "if(!this.disabled) { this.disabled=true; this.textContent='Sending...'; this.form.submit(); }" %>
 <% end %>
+
+<script>
+function toggleSendButton() {
+  const input = document.querySelector('#message_form input[name="message"]');
+  const button = document.querySelector('#message_form button[type="submit"]');
+  
+  if (input && button) {
+    if (input.value.trim().length > 0) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
+  }
+}
+
+document.addEventListener('turbo:submit-end', function() {
+  const button = document.querySelector('#message_form button[type="submit"]');
+  if (button) {
+    button.disabled = false;
+    button.textContent = 'Send';
+    toggleSendButton(); // Re-check if input is empty
+  }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  toggleSendButton();
+});
+</script>

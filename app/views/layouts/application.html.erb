@@ -23,17 +23,27 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div>
-      <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete } %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %>
-        <%= link_to "Sign in", new_user_session_path %>
-      <% end %>
+  <body class="h-screen flex flex-col">
+    <!-- Authentication header -->
+    <div class="bg-base-300 px-4 py-2 text-sm flex justify-between items-center flex-shrink-0">
+      <div>
+        <% if notice %><span class="text-success"><%= notice %></span><% end %>
+        <% if alert %><span class="text-error"><%= alert %></span><% end %>
+        <% unless notice || alert %><span class="font-semibold">AI Chat</span><% end %>
+      </div>
+      <div class="flex gap-2">
+        <% if user_signed_in? %>
+          <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-xs btn-ghost" %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-xs btn-primary" %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-xs btn-ghost" %>
+        <% end %>
+      </div>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    
+    <!-- Main content area -->
+    <div class="flex-1 overflow-hidden">
+      <%= yield %>
+    </div>
   </body>
 </html>
