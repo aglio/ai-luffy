@@ -23,4 +23,3 @@ class ChatRecordsController < ApplicationController
     end
   end
 end
-

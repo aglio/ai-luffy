@@ -1,7 +1,7 @@
 class Techniques < RubyLLM::Tool
   description "Gets a list of luffy's techniques"
 
-  def execute()
+  def execute
     url = "https://api.api-onepiece.com/v2/luffy-techniques/en"
 
     response = Faraday.get(url)
@@ -10,4 +10,3 @@ class Techniques < RubyLLM::Tool
     { error: e.message }
   end
 end
-
